@@ -1,177 +1,494 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GO2cam — Accès sécurisé</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GO2cam – Maintenance 2026 · Essentiel / Premium / Rappel</title>
   <meta name="theme-color" content="#00f7ff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    :root{--bg:#0d0d0d;--card:#141414;--stroke:#2a2a2a;--txt:#e5e7eb;--muted:#9ca3af;--brand:#00f7ff}
+    :root{
+      --bg-dark:#0b0e13;--bg-soft:#11151c;--primary:#00f7ff;--primary-2:#00c9d6;
+      --text:#e5e7eb;--muted:#9ca3af;--card:#0f1319;--stroke:#1e2630;--ring:rgba(0,247,255,.45);
+      --neon-glow:0 0 8px #00f7ff,0 0 20px #00f7ff,0 0 40px #00f7ff,0 0 70px #00f7ff22;
+      --pink:#ff3ea5;--vio:#7c5cff;--cyan:#00f7ff;--lime:#9cff57;
+    }
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:system-ui,Inter,Segoe UI,Roboto,Arial,sans-serif;background:#0d0d0d;color:var(--txt)}
-    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
-    .card{width:min(560px,92%);background:var(--card);border:1px solid var(--stroke);border-radius:18px;padding:28px;box-shadow:0 0 10px #00f7ff22}
-    .brand{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-    .dot{width:14px;height:14px;border-radius:4px;background:var(--brand);box-shadow:0 0 14px var(--brand)}
-    h1{margin:.25rem 0 1rem 0}
-    p{color:var(--muted);margin:.25rem 0}
-    input{width:100%;padding:12px;border-radius:10px;border:1px solid #3a3a3a;background:#0f0f0f;color:var(--txt)}
-    input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px #00f7ff40}
-    .btn{width:100%;padding:12px;border-radius:12px;border:1px solid transparent;font-weight:700;cursor:pointer}
-    .btn-primary{background:var(--brand);color:#031517;box-shadow:0 0 12px #00f7ff}
-    #msg{color:var(--muted);min-height:1.2em;margin-top:6px}
-    .center{display:flex;justify-content:center}
+    html,body{margin:0;min-height:100%;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;color:var(--text);}
+    body{background:radial-gradient(1200px 500px at 15% 10%,#0e1721 20%,transparent 70%),
+         radial-gradient(1000px 500px at 85% 15%,#07141a 10%,transparent 75%),
+         linear-gradient(270deg,var(--bg-dark),var(--bg-soft),var(--bg-dark));
+      background-size:200% 200%;animation:bgFlow 24s ease-in-out infinite}
+    @keyframes bgFlow{0%{background-position:0% 30%}50%{background-position:100% 70%}100%{background-position:0% 30%}}
+    a{color:inherit;text-decoration:none}
+    [hidden]{display:none!important}
+    .container{width:min(1120px,92%);margin-inline:auto}
+
+    header{position:sticky;top:0;z-index:50;background:rgba(12,16,22,.75);backdrop-filter:blur(10px);border-bottom:2px solid var(--primary)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0}
+    .logo{font-weight:800;color:var(--primary);text-shadow:var(--neon-glow)}
+    .pill{display:inline-block;border:1px solid var(--stroke);border-radius:999px;padding:.35rem .7rem;background:#0a0f15;color:#e5e7eb}
+
+    .btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 1.2rem;border-radius:14px;border:1px solid transparent;font-weight:800;cursor:pointer;transition:all .25s ease;text-transform:uppercase;letter-spacing:.02em}
+    .btn-pri{background:var(--primary);color:#031517;box-shadow:var(--neon-glow)}
+    .btn-pri:hover{transform:translateY(-1px) scale(1.03);background:var(--primary-2)}
+    .btn-ghost{background:transparent;border-color:var(--stroke);color:var(--text)}
+    .btn-ghost:hover{border-color:var(--primary);box-shadow:var(--neon-glow)}
+
+    /* Liens plats (pas de bulles) */
+    .link{font-weight:800; padding:0; border:none; background:transparent; text-transform:uppercase}
+    .link:hover{text-decoration:underline; text-underline-offset:3px}
+
+    /* Carte sans halo arc-en-ciel */
+    .card.plain::before{display:none!important}
+
+
+    .hero{padding:3rem 0 1.6rem;text-align:center}
+    h1{font-size:clamp(2rem,3.4vw,2.8rem);margin:.4rem 0;color:#fff;text-shadow:0 2px 14px #00f7ff44}
+    p.lead{color:var(--muted);max-width:760px;margin:.5rem auto 0}
+
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;margin:1.2rem 0 0}
+    .cta{position:relative;display:flex;align-items:center;gap:.7rem;padding:1rem 1.1rem;border-radius:14px;border:1px solid var(--stroke);background:linear-gradient(180deg,#0b1219,#0b1219 50%,#0a0f15);box-shadow:inset 0 0 16px #00f7ff11}
+    .cta .title{font-weight:900}
+    .cta .sub{color:var(--muted);font-size:.9rem}
+
+    .rays{pointer-events:none;position:absolute;inset:-2px;border-radius:16px;filter:blur(16px);opacity:.9;background:conic-gradient(from 0deg at 50% 50%,var(--cyan),var(--vio),var(--pink),var(--lime),var(--cyan))}
+    .rays::after{content:"";position:absolute;inset:0;border-radius:16px;background:radial-gradient(70% 30% at 50% 0%,#00f7ff55,transparent 80%)}
+
+    .grid-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+    .grid-cards.top-row .card{padding:1.1rem 1rem}
+    .grid-cards.top-row .card h3{margin:.2rem 0 .3rem 0}
+    .card.mini .btn{margin-top:.2rem}
+
+    @media(max-width:900px){.grid-cards{grid-template-columns:1fr}}
+    .card{position:relative;background:var(--card);border:1px solid var(--stroke);border-radius:18px;padding:1rem;overflow:hidden;display:flex;flex-direction:column}
+    .card.highlight{border-color:var(--primary);box-shadow:0 0 0 1px #00f7ff,0 0 22px #00f7ff44}
+    .card-cta{margin-top:auto;display:flex;justify-content:center;padding-top:.6rem}
+    .card-cta .btn,.card-cta .link{align-self:center}
+    .grid-cards>article.card{height:100%}
+    .card::before{content:"";position:absolute;inset:-2px;border-radius:20px;opacity:.0;display:none;}
+    .card h3{margin:.2rem 0;color:var(--primary)}
+    .price{font-size:1.1rem;font-weight:800;color:#fff}
+    .features{margin:.8rem 0 0 1rem}
+    .features li{margin:.25rem 0}
+    .badge{position:absolute;top:10px;right:10px;border:1px solid var(--primary);padding:.25rem .5rem;border-radius:999px;font-size:.75rem;color:var(--primary);background:#051319}
+
+    /* ===== Dashboard ===== */
+    .dash{margin-top:2rem}
+    .grid{display:grid;gap:16px}
+    .g-4{grid-template-columns:repeat(4,1fr)}
+    .g-5{grid-template-columns:repeat(5,1fr)}
+    .g-2{grid-template-columns:1fr 1fr}
+    @media(max-width:1000px){.g-4,.g-5{grid-template-columns:1fr 1fr}.g-2{grid-template-columns:1fr}}
+    .kpi{display:flex;flex-direction:column;gap:4px}
+    .kpi .lbl{color:var(--muted);font-size:.9rem}
+    .kpi .val{font-size:1.6rem;font-weight:800}
+    .tag{display:inline-block;padding:.3rem .6rem;border:1px solid var(--stroke);border-radius:999px;background:#0b0d10;color:#cbd5e1}
+    .login-inline{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+    table{width:100%;border-collapse:collapse}
+    th,td{border-bottom:1px solid var(--stroke);padding:.6rem;text-align:left}
+    th{color:#cbd5e1}
+    .toolbar{display:flex;gap:.6rem;align-items:center;justify-content:space-between;margin:.4rem 0 1rem}
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <section class="card">
-      <div class="brand">
-        <div class="dot"></div>
-        <div style="font-weight:800;color:var(--brand);letter-spacing:.5px">GO2cam</div>
+  <header>
+    <div class="container nav">
+      <div class="logo">GO2cam</div>
+      <div class="login-inline">
+        <span class="pill">Information contrat</span>
+        <!-- Suppression du title pour éviter la bulle/tooltip -->
+        <button id="btn-stats" class="btn btn-ghost">Administrateur</button>
+        <span id="badge-count" class="tag" hidden>—</span>
       </div>
-      <h1>Accès sécurisé</h1>
+    </div>
+  </header>
 
-      <!-- Étape e-mail -->
-      <div id="stepEmail" style="display:flex;flex-direction:column;gap:.6rem;margin-top:12px">
-        <p>Entrez votre e-mail pour recevoir un code à 6 chiffres.</p>
-        <input id="email" type="email" placeholder="Adresse e-mail" autocomplete="email" />
-        <button id="sendBtn" class="btn btn-primary">Recevoir le code</button>
+  <main class="container">
+    <section class="hero">
+      <p class="pill">Entrée en vigueur&nbsp;: 01/01/2026</p>
+      <h1>Maintenance GO2cam 2026 — choisissez votre formule</h1>
+      <p class="lead">Trois accès directs. Cliquez et la vidéo se lance, puis retrouvez les formules détaillées.</p>
+      <!-- Section vidéo simple --> (masquée au départ) -->
+      <div id="video-wrap" class="card plain" style="margin-top:18px" hidden>
+        <div style="max-width:1024px; margin:16px auto; position:relative">
+          <video id="video-nouveautes" controls playsinline style="width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#000;border-radius:12px;border:1px solid var(--stroke);"></video>
+          <div id="video-msg" class="muted" style="margin-top:8px"></div>
+        </div>
+      </div>
+        <div style="max-width:1024px; margin:16px auto; position:relative">
+          <video id="video-nouveautes" controls playsinline style="width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#000;border-radius:12px;border:1px solid var(--stroke);box-shadow:0 0 12px #00f7ff22;"></video>
+          <div id="video-msg" class="muted" style="margin-top:8px"></div>
+        </div>
       </div>
 
-      <!-- Étape code -->
-      <div id="stepOtp" style="display:none;flex-direction:column;gap:.6rem;margin-top:12px">
-        <div class="center"><p>Un code à 6 chiffres vient d’être envoyé.</p></div>
-        <input id="otp" inputmode="numeric" autocomplete="one-time-code" placeholder="Code à 6 chiffres" style="letter-spacing:4px;text-align:center;font-weight:700" />
-        <button id="verifyBtn" class="btn btn-primary">Valider le code</button>
+      <!-- Cartes formules (vitrine) -->
+      <div class="grid-cards" role="list" style="margin-top:22px">
+        <article class="card highlight" role="listitem">
+          <span class="badge">Par défaut</span>
+          <h3>Essentiel</h3>
+<ul class="features">
+            <li>Appel téléphonique &amp; e-mail</li>
+            <li>Prise en main à distance</li>
+            <li><strong>Installation du logiciel en local</strong></li>
+            <li><strong>Hotline&nbsp;: 2&nbsp;h/an</strong></li>
+            <li>Formation nouveautés&nbsp;: <strong style="color:#00f7ff">500&nbsp;€ HT/pers.</strong> (au lieu de 800&nbsp;€)</li>
+          </ul>
+          
+        </article>
+
+        <article class="card highlight" role="listitem">
+          <span class="badge">Sur demande</span>
+          <h3>Premium</h3>
+<ul class="features">
+            <li>Appel téléphonique &amp; e-mail</li>
+            <li>Prise en main à distance</li>
+            <li><strong>Installation du logiciel sur serveur</strong></li>
+            <li><strong>Hotline&nbsp;: 7&nbsp;h/an</strong></li>
+            <li><strong>Remise jusqu’à 10&nbsp;%</strong> sur post-processeur / nouvelle licence</li>
+            <li>Formation nouveautés&nbsp;: <strong style="color:#00f7ff">500&nbsp;€ HT/pers.</strong> (au lieu de 800&nbsp;€)</li>
+          </ul>
+          
+        </article>
+
+        <article class="card highlight" role="listitem">
+          <span class="badge">Sur demande</span>
+          <h3>Être rappelé</h3>
+<ul class="features">
+            <li>Accompagnement personnalisé</li>
+            <li>Conseil selon votre contexte</li>
+            <li>Démo ciblée au besoin</li>
+          </ul>
+          
+        </article>
+      </div>
+    </section>
+
+    <!-- BOTTOM: 3 choix en pied de page -->
+    <section class="container" style="margin:22px auto 8px auto">
+      <div class="grid-cards top-row" role="list">
+        <article class="card mini highlight" role="listitem">
+          <h3>Essentiel</h3>
+          <a class="btn btn-pri" data-formule="essentiel" href="https://support.go2cam.net/go2f-maintenance?formule=Essentiel">Accéder à Essentiel</a>
+        </article>
+        <article class="card mini highlight" role="listitem">
+          <h3>Premium</h3>
+          <a class="btn btn-ghost" data-formule="premium" href="https://support.go2cam.net/go2f-maintenance?formule=Premium">Accéder à Premium</a>
+        </article>
+        <article class="card mini highlight" role="listitem">
+          <h3>Être rappelé</h3>
+          <a class="btn btn-ghost" data-formule="rappel" href="https://support.go2cam.net/go2f-maintenance?formule=rappel">Être rappelé</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ****** La section comparatif a été supprimée comme demandé ****** -->
+
+    <!-- ======== DASHBOARD INTÉGRÉ ======== -->
+    <section id="stats" class="dash card" hidden>
+      <div class="toolbar">
+        <div class="login-inline">
+          <h3 style="margin:0">GO2cam 2026</h3>
+          <span class="tag" id="badge-filter" hidden></span>
+        </div>
+        <div class="login-inline">
+          <input id="pwd" type="password" placeholder="Mot de passe…" />
+          <button id="btn-login" class="btn btn-ghost">Entrer</button>
+          <button id="btn-logout" class="btn btn-ghost" hidden>Quitter</button>
+          <button id="btn-export" class="btn btn-ghost" hidden>Exporter CSV</button>
+        </div>
       </div>
 
-      <p id="msg"></p>
+      <div id="dash-content" hidden>
+        <!-- Ajout d'un KPI "Clics liens" -->
+        <div class="grid g-5">
+          <div class="card kpi"><span class="lbl">Total</span><span id="kpi-total" class="val">—</span></div>
+          <div class="card kpi"><span class="lbl">Essentiel</span><span id="kpi-ess" class="val">—</span></div>
+          <div class="card kpi"><span class="lbl">Premium</span><span id="kpi-pre" class="val">—</span></div>
+          <div class="card kpi"><span class="lbl">Rappels</span><span id="kpi-rap" class="val">—</span></div>
+          <div class="card kpi"><span class="lbl">Clics liens</span><span id="kpi-clicks" class="val">—</span></div>
+        </div>
+
+        <div class="grid g-2" style="margin-top:16px">
+          <div class="card">
+            <h4 style="margin:0 0 .6rem 0">Répartition des formules</h4>
+            <canvas id="chart-formules" height="300"></canvas>
+          </div>
+          <div class="card">
+            <h4 style="margin:0 0 .6rem 0">Top CAO</h4>
+            <canvas id="chart-cao" height="300"></canvas>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h4 style="margin:0 0 .6rem 0">Soumissions dans le temps</h4>
+          <canvas id="chart-temps" height="90"></canvas>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <div class="toolbar">
+            <h4 style="margin:0">Dernières réponses</h4>
+            <div class="login-inline">
+              <input id="q" placeholder="Filtrer (entreprise, email, CAO…)" />
+              <select id="filtre-formule">
+                <option value="">Toutes formules</option>
+                <option value="essentiel">Essentiel</option>
+                <option value="premium">Premium</option>
+                <option value="rappel">Rappel</option>
+              </select>
+            </div>
+          </div>
+          <div style="overflow:auto">
+            <table id="tbl">
+              <thead>
+                <tr><th>Date</th><th>Entreprise</th><th>Nom</th><th>Email</th><th>Tél</th><th>Formule</th><th>CAO</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <p id="login-msg" class="muted" style="margin-top:.6rem"></p>
     </section>
   </main>
 
-  <!-- Supabase SDK -->
+  <footer class="container">
+    <p>© 2025 GO2cam – Tous droits réservés.</p>
+  </footer>
+
+  <!-- Libs -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/utc.js"></script>
+  <script>dayjs.extend(window.dayjs_plugin_utc)</script>
+
+  <!-- ===== CONFIG SUPABASE ===== -->
   <script>
-    // ====== CONFIG À AJUSTER SI BESOIN ======
-    const SUPABASE_URL      = "https://jsmgnchubnkkfhyuadpx.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpzbWduY2h1Ym5ra2ZoeXVhZHB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA3OTI0ODksImV4cCI6MjA3NjM2ODQ4OX0.Q3ZkOKkaYv70tfLz9bEjrkof5RcLbDV_MkXehk8sJ_E";
+    const SUPABASE_URL  = "https://jsmgnchubnkkfhyuadpx.supabase.co";
+    const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpzbWduY2h1Ym5ra2ZoeXVhZHB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA3OTI0ODksImV4cCI6MjA3NjM2ODQ4OX0.Q3ZkOKkaYv70tfLz9bEjrkof5RcLbDV_MkXehk8sJ_E";
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
-    const STORAGE_BUCKET    = "prive";
-    const PRIVATE_FILE_PATH = "client/go2cam_maintenance_2026_v6.html"; // chemin exact dans Storage
-    const EXPIRY_SECONDS    = 900; // 15 minutes
-    const REDIRECT_URL      = "https://salaktum-coder.github.io/clients/";
-    // ========================================
+    // Storage vidéo
+    const STORAGE_BUCKET = "prive";
+    const VIDEO_PATH  = "client/nouveautes-2026.mp4";
+    const POSTER_PATH = "client/poster-nouveautes-2026.jpg";
+    const EXPIRY_SEC  = 60 * 60 * 2;
 
-    // Session NON persistée → évite la reconnexion automatique après fermeture du navigateur
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-      auth: { persistSession: false }
+    // Edge Function lecture seule
+    const EDGE_STATS_URL  = "https://jsmgnchubnkkfhyuadpx.functions.supabase.co/maintenance-stats";
+
+    // Mot de passe dashboard (SHA-256 de 'go2cam2026!')
+    const PASSWORD_SHA256 = "31cacff1e8124f5d672b67ecd36e91b2ee81df7daec29a0b99848fd448af3f53";
+  </script>
+
+  <!-- Vidéo signée -->
+  <script>
+    async function loadSignedMedia(){
+      const msgEl = document.getElementById('video-msg');
+      const video = document.getElementById('video-nouveautes');
+      try {
+        msgEl.textContent = "Chargement de la vidéo…";
+        const { data: poster } = await supabase.storage.from(STORAGE_BUCKET).createSignedUrl(POSTER_PATH, EXPIRY_SEC);
+        if (poster?.signedUrl) video.setAttribute('poster', poster.signedUrl);
+        const { data: signed } = await supabase.storage.from(STORAGE_BUCKET).createSignedUrl(VIDEO_PATH, EXPIRY_SEC);
+        video.src = signed.signedUrl; video.load();
+        video.oncanplay = () => { msgEl.textContent = ""; };
+        video.onerror = () => { msgEl.textContent = "Le navigateur ne peut pas lire cette vidéo."; };
+      } catch (e) { console.error(e); msgEl.textContent = "Impossible de charger la vidéo."; }
+    }
+    // on ne charge la vidéo que lorsque l'utilisateur clique sur une formule
+    // document.addEventListener('DOMContentLoaded', loadSignedMedia);
+  </script>
+
+  <!-- Tracking clics CTA + désactivation tooltip admin -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {$1
+
+      // Top links: au clic, on révèle la vidéo, on charge l'URL signée et on joue
+      const topLinks = document.querySelectorAll('.top-link');
+      for (const l of topLinks){
+        l.addEventListener('click', async (e)=>{
+          const wrap = document.getElementById('video-wrap');
+          wrap.hidden = false;
+          if (!document.getElementById('video-nouveautes').src){
+            await loadSignedMedia();
+          }
+          setTimeout(()=>{ document.getElementById('video-nouveautes').play?.(); }, 100);
+        }, {passive:true});
+      }
     });
-
-    const stepEmail = document.getElementById('stepEmail');
-    const stepOtp   = document.getElementById('stepOtp');
-    const emailEl   = document.getElementById('email');
-    const otpEl     = document.getElementById('otp');
-    const sendBtn   = document.getElementById('sendBtn');
-    const verifyBtn = document.getElementById('verifyBtn');
-    const msg       = document.getElementById('msg');
-
-    let currentEmail = null;
-
-    // Ouvre le HTML privé via URL signée (avec un message clair si non autorisé)
-    async function openPrivateHtmlAsPage(bucket, path, expiresSec = 900) {
-      const { data: signed, error: signErr } = await supabase
-        .storage.from(bucket)
-        .createSignedUrl(path, expiresSec, { download: false });
-
-      if (signErr || !signed?.signedUrl) {
-        const apiMsg = signErr?.message || "inconnue";
-        if (/401|403|permission|not allowed|Unauthorized/i.test(apiMsg)) {
-          throw new Error("Accès refusé : votre e-mail n’est pas autorisé. Veuillez vous connecter avec l’adresse qui a reçu l’e-mail GO2cam.");
-        }
-        throw new Error("Accès refusé : cette adresse n’est pas autorisée. Connectez-vous avec l’adresse qui a reçu l’e-mail GO2cam.");
       }
+    });
+  </script>
 
-      const res = await fetch(signed.signedUrl + `&nocache=${Date.now()}`, { cache: "no-store" });
-      if (!res.ok) {
-        if (res.status === 401 || res.status === 403) {
-          throw new Error("Accès refusé : votre e-mail n’est pas autorisé. Veuillez utiliser l’adresse qui a reçu l’e-mail GO2cam.");
-        }
-        throw new Error("Impossible de charger le contenu sécurisé (HTTP " + res.status + ").");
-      }
+  <!-- Dashboard: mot de passe + fetch + charts + KPI clics -->
+  <script>
+    const $ = (s)=>document.querySelector(s);
+    let RAW = [], chartFormules, chartCao, chartTemps;
 
-      const html = await res.text();
-      const blob = new Blob([html], { type: "text/html;charset=utf-8" });
-      const url  = URL.createObjectURL(blob);
-      window.location.href = url;
+    async function sha256Hex(txt){
+      const buf = new TextEncoder().encode(txt);
+      const hash = await crypto.subtle.digest('SHA-256', buf);
+      return [...new Uint8Array(hash)].map(b=>b.toString(16).padStart(2,'0')).join('');
     }
 
-    // 1) Envoi OTP
-    sendBtn.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const email = (emailEl.value || "").trim();
-      if (!email) { msg.textContent = "Entrez un e-mail valide."; return; }
-      msg.textContent = "Envoi du code…";
-      currentEmail = email;
-
-      const { error } = await supabase.auth.signInWithOtp({
-        email,
-        options: { shouldCreateUser: true, emailRedirectTo: REDIRECT_URL }
-      });
-      if (error) { msg.textContent = "Erreur d’envoi : " + (error.message || "inconnue"); return; }
-
-      msg.textContent = "Code envoyé. Vérifiez votre boîte mail (et vos spams).";
-      stepEmail.style.display = "none";
-      stepOtp.style.display   = "flex";
-      otpEl.focus();
+    document.getElementById('btn-stats').addEventListener('click', ()=>{
+      const sec = document.getElementById('stats');
+      if (sec.hasAttribute('hidden')) { sec.removeAttribute('hidden'); sec.scrollIntoView({behavior:'smooth'}); }
+      else { sec.setAttribute('hidden',''); }
     });
 
-    // 2) Vérification OTP
-    verifyBtn.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const code = (otpEl.value || "").trim();
-      if (!code) { msg.textContent = "Saisissez le code reçu."; return; }
-      msg.textContent = "Vérification…";
+    document.getElementById('btn-login').addEventListener('click', async ()=>{
+      const ok = (await sha256Hex(document.getElementById('pwd').value || '')) === PASSWORD_SHA256;
+      if (!ok) { document.getElementById('login-msg').textContent = "Mot de passe incorrect."; return; }
+      document.getElementById('login-msg').textContent = "";
+      document.getElementById('btn-logout').hidden = false;
+      document.getElementById('btn-export').hidden = false;
+      document.getElementById('dash-content').hidden = false;
+      document.getElementById('badge-count').hidden = false;
+      document.getElementById('badge-filter').hidden = false;
+      await loadData();
+    });
 
-      const { error } = await supabase.auth.verifyOtp({
-        email: currentEmail,
-        token: code,
-        type: "email"
+    document.getElementById('btn-logout').addEventListener('click', ()=>{
+      document.getElementById('dash-content').hidden = true;
+      document.getElementById('btn-logout').hidden = true;
+      document.getElementById('btn-export').hidden = true;
+      document.getElementById('pwd').value = '';
+      document.getElementById('badge-count').hidden = true;
+      document.getElementById('badge-filter').hidden = true;
+    });
+
+    // Récupération + construction
+    async function loadData(){
+      // Réponses via Edge Function
+      const res = await fetch(EDGE_STATS_URL, {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + SUPABASE_ANON,
+          'apikey': SUPABASE_ANON
+        },
+        cache: 'no-store'
       });
 
-      if (error) {
-        // Message clair si le code est invalide/expiré
-        msg.textContent = "Code invalide ou expiré. Réessayez.";
+      if (!res.ok) {
+        document.getElementById('login-msg').textContent = 'Edge Function indisponible (' + res.status + ').';
         return;
       }
 
-      msg.textContent = "Connexion réussie. Ouverture…";
-      try {
-        await openPrivateHtmlAsPage(STORAGE_BUCKET, PRIVATE_FILE_PATH, EXPIRY_SECONDS);
-      } catch (e2) {
-        // 👉 Message PRO si l’e-mail n’est pas autorisé
-        msg.textContent = e2.message || "Accès refusé : cette adresse n’est pas autorisée. Connectez-vous avec l’adresse qui a reçu l’e-mail GO2cam.";
-      }
-    });
+      RAW = await res.json();
 
-    // 3) Si une session temporaire existe (rafraîchissement), on tente l’ouverture
-    (async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        try {
-          msg.textContent = "Session détectée. Ouverture…";
-          await openPrivateHtmlAsPage(STORAGE_BUCKET, PRIVATE_FILE_PATH, EXPIRY_SECONDS);
-        } catch (e) {
-          msg.textContent = e.message || "Accès refusé.";
-          stepEmail.style.display = "flex";
-          stepOtp.style.display   = "none";
-        }
-      }
-    })();
+      // Clics via table publique (RLS côté Supabase requis)
+      let clicks = [];
+      try{ const { data } = await supabase.from('maintenance_2026_clicks').select('id,formule,href,created_at'); clicks = data||[]; }catch(e){ clicks=[]; }
 
-    // Déconnexion quand on quitte/ferme la page (pour éviter la reconnexion auto)
-    window.addEventListener("pagehide", () => { supabase.auth.signOut().catch(()=>{}); });
-    window.addEventListener("beforeunload", () => { supabase.auth.signOut().catch(()=>{}); });
+      document.getElementById('badge-count').textContent = `${RAW.length} enregistrements`;
+      document.getElementById('kpi-clicks').textContent = clicks.length;
+
+      // Filtrage + rendu
+      applyFilters();
+      document.getElementById('q').addEventListener('input', applyFilters);
+      document.getElementById('filtre-formule').addEventListener('change', applyFilters);
+      document.getElementById('btn-export').addEventListener('click', () => exportCSV(filteredRows()));
+    }
+
+    function buildKPIs(rows){
+      const ess = rows.filter(r=>r.formule==='essentiel').length;
+      const pre = rows.filter(r=>r.formule==='premium').length;
+      const rap = rows.filter(r=>r.formule==='rappel').length;
+      document.getElementById('kpi-total').textContent = rows.length;
+      document.getElementById('kpi-ess').textContent = ess;
+      document.getElementById('kpi-pre').textContent = pre;
+      document.getElementById('kpi-rap').textContent = rap;
+    }
+
+    function buildCharts(rows){
+      const ess = rows.filter(r=>r.formule==='essentiel').length;
+      const pre = rows.filter(r=>r.formule==='premium').length;
+      const rap = rows.filter(r=>r.formule==='rappel').length;
+
+      if (chartFormules) chartFormules.destroy();
+      chartFormules = new Chart(document.getElementById('chart-formules'), {
+        type:'doughnut',
+        data:{ labels:['Essentiel','Premium','Rappel'], datasets:[{ data:[ess,pre,rap] }] },
+        options:{ plugins:{legend:{position:'bottom'}}, cutout:'62%' }
+      });
+
+      const counts = new Map();
+      for (const r of rows){
+        let k = (r.cao === 'autre') ? (r.cao_autre || 'Autre') : (r.cao || 'Non renseigné');
+        k = String(k).trim(); counts.set(k, (counts.get(k)||0)+1);
+      }
+      const top = [...counts.entries()].sort((a,b)=>b[1]-a[1]).slice(0,12);
+      if (chartCao) chartCao.destroy();
+      chartCao = new Chart(document.getElementById('chart-cao'), {
+        type:'bar',
+        data:{ labels:top.map(t=>t[0]), datasets:[{ data:top.map(t=>t[1]) }] },
+        options:{ indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{beginAtZero:true}} }
+      });
+
+      const perDay = new Map();
+      for (const r of rows){
+        const d = dayjs.utc(r.created_at).format('YYYY-MM-DD');
+        perDay.set(d, (perDay.get(d)||0)+1);
+      }
+      const seq = [...perDay.entries()].sort((a,b)=>a[0].localeCompare(b[0]));
+      if (chartTemps) chartTemps.destroy();
+      chartTemps = new Chart(document.getElementById('chart-temps'), {
+        type:'line',
+        data:{ labels:seq.map(x=>x[0]), datasets:[{ data:seq.map(x=>x[1]), fill:false, tension:.25 }] },
+        options:{ plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true, ticks:{precision:0}}} }
+      });
+    }
+
+    function buildTable(rows){
+      const tbody = document.querySelector('#tbl tbody');
+      tbody.innerHTML = '';
+      for (const r of rows.slice().reverse()){
+        const caoTxt = (r.cao === 'autre') ? (r.cao_autre || 'Autre') : (r.cao || '—');
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${dayjs.utc(r.created_at).local().format('DD/MM/YYYY HH:mm')}</td>
+          <td>${escapeHtml(r.entreprise || '—')}</td>
+          <td>${escapeHtml(r.nom || '—')}</td>
+          <td>${escapeHtml(r.email || '—')}</td>
+          <td>${escapeHtml(r.tel || '—')}</td>
+          <td>${r.formule || '—'}</td>
+          <td>${escapeHtml(caoTxt)}</td>`;
+        tbody.appendChild(tr);
+      }
+    }
+
+    function filteredRows(){
+      const q = (document.getElementById('q')?.value || '').toLowerCase();
+      const f = document.getElementById('filtre-formule')?.value || '';
+      const rows = RAW.filter(r=>{
+        const caoTxt = (r.cao === 'autre') ? (r.cao_autre || 'Autre') : (r.cao || '');
+        const line = [r.entreprise,r.nom,r.email,r.tel,caoTxt].join(' ').toLowerCase();
+        const okQ = !q || line.includes(q);
+        const okF = !f || r.formule === f;
+        return okQ && okF;
+      });
+      document.getElementById('badge-filter').textContent = f || q ? `${rows.length} enregistrements (filtrés)` : '';
+      return rows;
+    }
+
+    function applyFilters(){ const rows = filteredRows(); buildKPIs(rows); buildCharts(rows); buildTable(rows); }
+
+    function exportCSV(rows){
+      const header = ['created_at','entreprise','nom','email','tel','formule','cao','cao_autre'];
+      const esc = s => `"${String(s??'').replace(/"/g,'""')}"`;
+      const csv = [header.join(',')].concat(rows.map(r=>header.map(k=>esc(r[k])).join(','))).join('\n');
+      const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'maintenance_2026_export.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    }
+
+    function escapeHtml(s){return String(s).replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]))}
   </script>
 </body>
 </html>
