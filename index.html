@@ -1,19 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GO2cam – Maintenance 2026 · Essentiel / Premium / Rappel</title>
-  <meta name="theme-color" content="#00f7ff" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>GO2cam – Maintenance 2026 · Essentiel / Premium / Rappel</title>
+<meta content="#00f7ff" name="theme-color"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
     :root{
       --bg-dark:#0b0e13;--bg-soft:#11151c;--primary:#00f7ff;--primary-2:#00c9d6;
       --text:#e5e7eb;--muted:#9ca3af;--card:#0f1319;--stroke:#1e2630;--ring:rgba(0,247,255,.45);
-      --neon-glow:0 0 8px #00f7ff,0 0 20px #00f7ff,0 0 40px #00f7ff,0 0 70px #00f7ff22;
+      --neon-glow:0 0 10px #00f7ff,0 0 28px #00f7ff,0 0 60px #00f7ff,0 0 90px #00f7ff22;
       --pink:#ff3ea5;--vio:#7c5cff;--cyan:#00f7ff;--lime:#9cff57;
     }
     *{box-sizing:border-box}
@@ -31,6 +31,8 @@
     .nav{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0}
     .logo{font-weight:800;color:var(--primary);text-shadow:var(--neon-glow)}
     .pill{display:inline-block;border:1px solid var(--stroke);border-radius:999px;padding:.35rem .7rem;background:#0a0f15;color:#e5e7eb}
+    .pill-btn{border-color:var(--primary);color:var(--primary);background:#05161a;box-shadow:0 0 16px #00f7ff33}
+    .pill-btn:hover{box-shadow:0 0 22px #00f7ff77}
 
     .btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 1.2rem;border-radius:14px;border:1px solid transparent;font-weight:800;cursor:pointer;transition:all .25s ease;text-transform:uppercase;letter-spacing:.02em}
     .btn-pri{background:var(--primary);color:#031517;box-shadow:var(--neon-glow)}
@@ -38,13 +40,15 @@
     .btn-ghost{background:transparent;border-color:var(--stroke);color:var(--text)}
     .btn-ghost:hover{border-color:var(--primary);box-shadow:var(--neon-glow)}
 
+    .card.neon{border-color:var(--primary); box-shadow:var(--neon-glow)}
+    .mini.neon .btn{box-shadow:var(--neon-glow)}
+
     /* Liens plats (pas de bulles) */
     .link{font-weight:800; padding:0; border:none; background:transparent; text-transform:uppercase}
     .link:hover{text-decoration:underline; text-underline-offset:3px}
 
     /* Carte sans halo arc-en-ciel */
     .card.plain::before{display:none!important}
-
 
     .hero{padding:3rem 0 1.6rem;text-align:center}
     h1{font-size:clamp(2rem,3.4vw,2.8rem);margin:.4rem 0;color:#fff;text-shadow:0 2px 14px #00f7ff44}
@@ -62,13 +66,8 @@
     .grid-cards.top-row .card{padding:1.1rem 1rem}
     .grid-cards.top-row .card h3{margin:.2rem 0 .3rem 0}
     .card.mini .btn{margin-top:.2rem}
-
     @media(max-width:900px){.grid-cards{grid-template-columns:1fr}}
-    .card{position:relative;background:var(--card);border:1px solid var(--stroke);border-radius:18px;padding:1rem;overflow:hidden;display:flex;flex-direction:column}
-    .card.highlight{border-color:var(--primary);box-shadow:0 0 0 1px #00f7ff,0 0 22px #00f7ff44}
-    .card-cta{margin-top:auto;display:flex;justify-content:center;padding-top:.6rem}
-    .card-cta .btn,.card-cta .link{align-self:center}
-    .grid-cards>article.card{height:100%}
+    .card{position:relative;background:var(--card);border:1px solid var(--stroke);border-radius:18px;padding:1rem;overflow:hidden;box-shadow:0 0 14px #00f7ff22}
     .card::before{content:"";position:absolute;inset:-2px;border-radius:20px;opacity:.0;display:none;}
     .card h3{margin:.2rem 0;color:var(--primary)}
     .price{font-size:1.1rem;font-weight:800;color:#fff}
@@ -95,179 +94,146 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <div class="logo">GO2cam</div>
-      <div class="login-inline">
-        <span class="pill">Information contrat</span>
-        <!-- Suppression du title pour éviter la bulle/tooltip -->
-        <button id="btn-stats" class="btn btn-ghost">Administrateur</button>
-        <span id="badge-count" class="tag" hidden>—</span>
-      </div>
-    </div>
-  </header>
+<header>
+<div class="container nav">
+<div class="logo">GO2cam</div>
+<div class="login-inline">
+<span class="pill">Information contrat</span>
+<!-- Suppression du title pour éviter la bulle/tooltip -->
+<button class="pill pill-btn" id="btn-stats">Admin</button>
+</div>
+</div>
+</header>
+<main class="container">
+<section class="hero">
+<p class="pill">Entrée en vigueur : 01/01/2026</p>
+<h1>Maintenance GO2cam 2026 — choisissez votre formule</h1>
+<!-- Vitrine CTA neon -->
+<div class="cta-row">
+<a class="btn btn-pri" data-formule="essentiel" href="https://support.go2cam.net/go2f-maintenance?formule=Essentiel">Accéder à Essentiel</a>
+<a class="btn btn-ghost" data-formule="premium" href="https://support.go2cam.net/go2f-maintenance?formule=Premium">Accéder à Premium</a>
+<a class="btn btn-ghost" data-formule="rappel" href="https://support.go2cam.net/go2f-maintenance?formule=rappel">Être rappelé</a>
+</div>
+<div class="card plain" style="margin-top:12px">
 
-  <main class="container">
-    <section class="hero">
-      <p class="pill">Entrée en vigueur&nbsp;: 01/01/2026</p>
-      <h1>Maintenance GO2cam 2026 — choisissez votre formule</h1>
-      <p class="lead">Trois accès directs. Cliquez et la vidéo se lance, puis retrouvez les formules détaillées.</p>
-      <!-- Section vidéo simple --> (masquée au départ) -->
-      <div id="video-wrap" class="card plain" style="margin-top:18px" hidden>
-        <div style="max-width:1024px; margin:16px auto; position:relative">
-          <video id="video-nouveautes" controls playsinline style="width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#000;border-radius:12px;border:1px solid var(--stroke);"></video>
-          <div id="video-msg" class="muted" style="margin-top:8px"></div>
-        </div>
-      </div>
-        <div style="max-width:1024px; margin:16px auto; position:relative">
-          <video id="video-nouveautes" controls playsinline style="width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#000;border-radius:12px;border:1px solid var(--stroke);box-shadow:0 0 12px #00f7ff22;"></video>
-          <div id="video-msg" class="muted" style="margin-top:8px"></div>
-        </div>
-      </div>
-
-      <!-- Cartes formules (vitrine) -->
-      <div class="grid-cards" role="list" style="margin-top:22px">
-        <article class="card highlight" role="listitem">
-          <span class="badge">Par défaut</span>
-          <h3>Essentiel</h3>
+<div style="max-width:1024px; margin:16px auto; position:relative">
+<video autoplay="" controls="" id="video-nouveautes" muted="" playsinline="" style="width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#000;border-radius:12px;border:1px solid var(--stroke);box-shadow:0 0 12px #00f7ff22;"></video>
+<div class="muted" id="video-msg" style="margin-top:8px"></div>
+</div>
+</div>
+<!-- Cartes formules (vitrine) -->
+<div class="grid-cards" role="list" style="margin-top:22px">
+<article class="card highlight" role="listitem">
+<span class="badge">Par défaut</span>
+<h3>Essentiel</h3>
 <ul class="features">
-            <li>Appel téléphonique &amp; e-mail</li>
-            <li>Prise en main à distance</li>
-            <li><strong>Installation du logiciel en local</strong></li>
-            <li><strong>Hotline&nbsp;: 2&nbsp;h/an</strong></li>
-            <li>Formation nouveautés&nbsp;: <strong style="color:#00f7ff">500&nbsp;€ HT/pers.</strong> (au lieu de 800&nbsp;€)</li>
-          </ul>
-          
-        </article>
-
-        <article class="card highlight" role="listitem">
-          <span class="badge">Sur demande</span>
-          <h3>Premium</h3>
+<li>Appel téléphonique &amp; e-mail</li>
+<li>Prise en main à distance</li>
+<li><strong>Installation du logiciel en local</strong></li>
+<li><strong>Hotline : 2 h/an</strong></li>
+<li>Formation nouveautés : <strong style="color:#00f7ff">500 € HT/pers.</strong> (au lieu de 800 €)</li>
+</ul>
+</article>
+<article class="card highlight" role="listitem">
+<span class="badge">Sur demande</span>
+<h3>Premium</h3>
 <ul class="features">
-            <li>Appel téléphonique &amp; e-mail</li>
-            <li>Prise en main à distance</li>
-            <li><strong>Installation du logiciel sur serveur</strong></li>
-            <li><strong>Hotline&nbsp;: 7&nbsp;h/an</strong></li>
-            <li><strong>Remise jusqu’à 10&nbsp;%</strong> sur post-processeur / nouvelle licence</li>
-            <li>Formation nouveautés&nbsp;: <strong style="color:#00f7ff">500&nbsp;€ HT/pers.</strong> (au lieu de 800&nbsp;€)</li>
-          </ul>
-          
-        </article>
-
-        <article class="card highlight" role="listitem">
-          <span class="badge">Sur demande</span>
-          <h3>Être rappelé</h3>
+<li>Appel téléphonique &amp; e-mail</li>
+<li>Prise en main à distance</li>
+<li><strong>Installation du logiciel sur serveur</strong></li>
+<li><strong>Hotline : 7 h/an</strong></li>
+<li><strong>Remise jusqu’à 10 %</strong> sur post-processeur / nouvelle licence</li>
+<li>Formation nouveautés : <strong style="color:#00f7ff">500 € HT/pers.</strong> (au lieu de 800 €)</li>
+</ul>
+</article>
+<article class="card highlight" role="listitem">
+<span class="badge">Sur demande</span>
+<h3>Être rappelé</h3>
 <ul class="features">
-            <li>Accompagnement personnalisé</li>
-            <li>Conseil selon votre contexte</li>
-            <li>Démo ciblée au besoin</li>
-          </ul>
-          
-        </article>
-      </div>
-    </section>
+<li>Accompagnement personnalisé</li>
+<li>Conseil selon votre contexte</li>
+<li>Démo ciblée au besoin</li>
+</ul>
+</article>
+</div>
+</section>
+<!-- BOTTOM: 3 choix en pied de page -->
 
-    <!-- BOTTOM: 3 choix en pied de page -->
-    <section class="container" style="margin:22px auto 8px auto">
-      <div class="grid-cards top-row" role="list">
-        <article class="card mini highlight" role="listitem">
-          <h3>Essentiel</h3>
-          <a class="btn btn-pri" data-formule="essentiel" href="https://support.go2cam.net/go2f-maintenance?formule=Essentiel">Accéder à Essentiel</a>
-        </article>
-        <article class="card mini highlight" role="listitem">
-          <h3>Premium</h3>
-          <a class="btn btn-ghost" data-formule="premium" href="https://support.go2cam.net/go2f-maintenance?formule=Premium">Accéder à Premium</a>
-        </article>
-        <article class="card mini highlight" role="listitem">
-          <h3>Être rappelé</h3>
-          <a class="btn btn-ghost" data-formule="rappel" href="https://support.go2cam.net/go2f-maintenance?formule=rappel">Être rappelé</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- ****** La section comparatif a été supprimée comme demandé ****** -->
-
-    <!-- ======== DASHBOARD INTÉGRÉ ======== -->
-    <section id="stats" class="dash card" hidden>
-      <div class="toolbar">
-        <div class="login-inline">
-          <h3 style="margin:0">GO2cam 2026</h3>
-          <span class="tag" id="badge-filter" hidden></span>
-        </div>
-        <div class="login-inline">
-          <input id="pwd" type="password" placeholder="Mot de passe…" />
-          <button id="btn-login" class="btn btn-ghost">Entrer</button>
-          <button id="btn-logout" class="btn btn-ghost" hidden>Quitter</button>
-          <button id="btn-export" class="btn btn-ghost" hidden>Exporter CSV</button>
-        </div>
-      </div>
-
-      <div id="dash-content" hidden>
-        <!-- Ajout d'un KPI "Clics liens" -->
-        <div class="grid g-5">
-          <div class="card kpi"><span class="lbl">Total</span><span id="kpi-total" class="val">—</span></div>
-          <div class="card kpi"><span class="lbl">Essentiel</span><span id="kpi-ess" class="val">—</span></div>
-          <div class="card kpi"><span class="lbl">Premium</span><span id="kpi-pre" class="val">—</span></div>
-          <div class="card kpi"><span class="lbl">Rappels</span><span id="kpi-rap" class="val">—</span></div>
-          <div class="card kpi"><span class="lbl">Clics liens</span><span id="kpi-clicks" class="val">—</span></div>
-        </div>
-
-        <div class="grid g-2" style="margin-top:16px">
-          <div class="card">
-            <h4 style="margin:0 0 .6rem 0">Répartition des formules</h4>
-            <canvas id="chart-formules" height="300"></canvas>
-          </div>
-          <div class="card">
-            <h4 style="margin:0 0 .6rem 0">Top CAO</h4>
-            <canvas id="chart-cao" height="300"></canvas>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:16px">
-          <h4 style="margin:0 0 .6rem 0">Soumissions dans le temps</h4>
-          <canvas id="chart-temps" height="90"></canvas>
-        </div>
-
-        <div class="card" style="margin-top:16px">
-          <div class="toolbar">
-            <h4 style="margin:0">Dernières réponses</h4>
-            <div class="login-inline">
-              <input id="q" placeholder="Filtrer (entreprise, email, CAO…)" />
-              <select id="filtre-formule">
-                <option value="">Toutes formules</option>
-                <option value="essentiel">Essentiel</option>
-                <option value="premium">Premium</option>
-                <option value="rappel">Rappel</option>
-              </select>
-            </div>
-          </div>
-          <div style="overflow:auto">
-            <table id="tbl">
-              <thead>
-                <tr><th>Date</th><th>Entreprise</th><th>Nom</th><th>Email</th><th>Tél</th><th>Formule</th><th>CAO</th></tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <p id="login-msg" class="muted" style="margin-top:.6rem"></p>
-    </section>
-  </main>
-
-  <footer class="container">
-    <p>© 2025 GO2cam – Tous droits réservés.</p>
-  </footer>
-
-  <!-- Libs -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/utc.js"></script>
-  <script>dayjs.extend(window.dayjs_plugin_utc)</script>
-
-  <!-- ===== CONFIG SUPABASE ===== -->
-  <script>
+<!-- ****** La section comparatif a été supprimée comme demandé ****** -->
+<!-- ======== DASHBOARD INTÉGRÉ ======== -->
+<section class="dash card" hidden="" id="stats">
+<div class="toolbar">
+<div class="login-inline">
+<h3 style="margin:0">GO2cam 2026</h3>
+<span class="tag" hidden="" id="badge-filter"></span>
+</div>
+<div class="login-inline">
+<input id="pwd" placeholder="Mot de passe…" type="password"/>
+<button class="btn btn-ghost" id="btn-login">Entrer</button>
+<button class="btn btn-ghost" hidden="" id="btn-logout">Quitter</button>
+<button class="btn btn-ghost" hidden="" id="btn-export">Exporter CSV</button>
+</div>
+</div>
+<div hidden="" id="dash-content">
+<!-- Ajout d'un KPI "Clics liens" -->
+<div class="grid g-5">
+<div class="card kpi"><span class="lbl">Total</span><span class="val" id="kpi-total">—</span></div>
+<div class="card kpi"><span class="lbl">Essentiel</span><span class="val" id="kpi-ess">—</span></div>
+<div class="card kpi"><span class="lbl">Premium</span><span class="val" id="kpi-pre">—</span></div>
+<div class="card kpi"><span class="lbl">Rappels</span><span class="val" id="kpi-rap">—</span></div>
+<div class="card kpi"><span class="lbl">Clics liens</span><span class="val" id="kpi-clicks">—</span></div>
+</div>
+<div class="grid g-2" style="margin-top:16px">
+<div class="card">
+<h4 style="margin:0 0 .6rem 0">Répartition des formules</h4>
+<canvas height="300" id="chart-formules"></canvas>
+</div>
+<div class="card">
+<h4 style="margin:0 0 .6rem 0">Top CAO</h4>
+<canvas height="300" id="chart-cao"></canvas>
+</div>
+</div>
+<div class="card" style="margin-top:16px">
+<h4 style="margin:0 0 .6rem 0">Soumissions dans le temps</h4>
+<canvas height="90" id="chart-temps"></canvas>
+</div>
+<div class="card" style="margin-top:16px">
+<div class="toolbar">
+<h4 style="margin:0">Dernières réponses</h4>
+<div class="login-inline">
+<input id="q" placeholder="Filtrer (entreprise, email, CAO…)"/>
+<select id="filtre-formule">
+<option value="">Toutes formules</option>
+<option value="essentiel">Essentiel</option>
+<option value="premium">Premium</option>
+<option value="rappel">Rappel</option>
+</select>
+</div>
+</div>
+<div style="overflow:auto">
+<table id="tbl">
+<thead>
+<tr><th>Date</th><th>Entreprise</th><th>Nom</th><th>Email</th><th>Tél</th><th>Formule</th><th>CAO</th></tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+</div>
+<p class="muted" id="login-msg" style="margin-top:.6rem"></p>
+</section>
+</main>
+<footer class="container">
+<p>© 2025 GO2cam – Tous droits réservés.</p>
+</footer>
+<!-- Libs -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/utc.js"></script>
+<script>dayjs.extend(window.dayjs_plugin_utc)</script>
+<!-- ===== CONFIG SUPABASE ===== -->
+<script>
     const SUPABASE_URL  = "https://jsmgnchubnkkfhyuadpx.supabase.co";
     const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpzbWduY2h1Ym5ra2ZoeXVhZHB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA3OTI0ODksImV4cCI6MjA3NjM2ODQ4OX0.Q3ZkOKkaYv70tfLz9bEjrkof5RcLbDV_MkXehk8sJ_E";
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
@@ -284,9 +250,8 @@
     // Mot de passe dashboard (SHA-256 de 'go2cam2026!')
     const PASSWORD_SHA256 = "31cacff1e8124f5d672b67ecd36e91b2ee81df7daec29a0b99848fd448af3f53";
   </script>
-
-  <!-- Vidéo signée -->
-  <script>
+<!-- Vidéo signée -->
+<script>
     async function loadSignedMedia(){
       const msgEl = document.getElementById('video-msg');
       const video = document.getElementById('video-nouveautes');
@@ -296,37 +261,37 @@
         if (poster?.signedUrl) video.setAttribute('poster', poster.signedUrl);
         const { data: signed } = await supabase.storage.from(STORAGE_BUCKET).createSignedUrl(VIDEO_PATH, EXPIRY_SEC);
         video.src = signed.signedUrl; video.load();
-        video.oncanplay = () => { msgEl.textContent = ""; };
+        video.oncanplay = () => { msgEl.textContent = ""; try{ video.play(); }catch(e){} };
         video.onerror = () => { msgEl.textContent = "Le navigateur ne peut pas lire cette vidéo."; };
       } catch (e) { console.error(e); msgEl.textContent = "Impossible de charger la vidéo."; }
     }
-    // on ne charge la vidéo que lorsque l'utilisateur clique sur une formule
-    // document.addEventListener('DOMContentLoaded', loadSignedMedia);
+    document.addEventListener('DOMContentLoaded', loadSignedMedia);
   </script>
+<!-- Tracking clics CTA + désactivation tooltip admin -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Désactiver toute bulle/tooltip par attribut title (sécurité si ajouté ailleurs)
+      const adminBtn = document.getElementById('btn-stats');
+      adminBtn.removeAttribute('title');
 
-  <!-- Tracking clics CTA + désactivation tooltip admin -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {$1
-
-      // Top links: au clic, on révèle la vidéo, on charge l'URL signée et on joue
-      const topLinks = document.querySelectorAll('.top-link');
-      for (const l of topLinks){
-        l.addEventListener('click', async (e)=>{
-          const wrap = document.getElementById('video-wrap');
-          wrap.hidden = false;
-          if (!document.getElementById('video-nouveautes').src){
-            await loadSignedMedia();
-          }
-          setTimeout(()=>{ document.getElementById('video-nouveautes').play?.(); }, 100);
+      // Tracking des clics sur les liens vers les formules
+      const links = document.querySelectorAll('a[data-formule], a.cta-link');
+      for (const l of links){
+        l.addEventListener('click', async (ev)=>{
+          try{
+            // Enregistrer le clic sans bloquer la navigation
+            const formule = (l.dataset.formule||'').toLowerCase() || 'inconnu';
+            const href = l.getAttribute('href');
+            navigator.sendBeacon?.(SUPABASE_URL + '/rest/v1/maintenance_2026_clicks', new Blob([JSON.stringify({formule, href, created_at:new Date().toISOString()})], {type:'application/json'}));
+            // Fallback insert si Beacon indisponible (ne bloque pas la navigation grâce à setTimeout)
+            setTimeout(async()=>{ try{ await supabase.from('maintenance_2026_clicks').insert([{ formule, href }]); }catch(e){} },0);
+          }catch(e){ console.warn('click track failed', e); }
         }, {passive:true});
       }
     });
-      }
-    });
   </script>
-
-  <!-- Dashboard: mot de passe + fetch + charts + KPI clics -->
-  <script>
+<!-- Dashboard: mot de passe + fetch + charts + KPI clics -->
+<script>
     const $ = (s)=>document.querySelector(s);
     let RAW = [], chartFormules, chartCao, chartTemps;
 
@@ -349,7 +314,6 @@
       document.getElementById('btn-logout').hidden = false;
       document.getElementById('btn-export').hidden = false;
       document.getElementById('dash-content').hidden = false;
-      document.getElementById('badge-count').hidden = false;
       document.getElementById('badge-filter').hidden = false;
       await loadData();
     });
@@ -359,7 +323,6 @@
       document.getElementById('btn-logout').hidden = true;
       document.getElementById('btn-export').hidden = true;
       document.getElementById('pwd').value = '';
-      document.getElementById('badge-count').hidden = true;
       document.getElementById('badge-filter').hidden = true;
     });
 
@@ -386,7 +349,6 @@
       let clicks = [];
       try{ const { data } = await supabase.from('maintenance_2026_clicks').select('id,formule,href,created_at'); clicks = data||[]; }catch(e){ clicks=[]; }
 
-      document.getElementById('badge-count').textContent = `${RAW.length} enregistrements`;
       document.getElementById('kpi-clicks').textContent = clicks.length;
 
       // Filtrage + rendu
@@ -488,7 +450,7 @@
       const a = document.createElement('a'); a.href = url; a.download = 'maintenance_2026_export.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
     }
 
-    function escapeHtml(s){return String(s).replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]))}
+    function escapeHtml(s){return String(s).replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;' }[m]))}
   </script>
 </body>
 </html>
