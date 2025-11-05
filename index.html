@@ -91,7 +91,12 @@
     th,td{border-bottom:1px solid var(--stroke);padding:.6rem;text-align:left}
     th{color:#cbd5e1}
     .toolbar{display:flex;gap:.6rem;align-items:center;justify-content:space-between;margin:.4rem 0 1rem}
-  </style>
+  
+/* --- Align plan buttons at bottom & keep presentation --- */
+.card.highlight{display:flex;flex-direction:column}
+.card.highlight .features{flex:1 1 auto}
+.card.highlight .btn{align-self:flex-start;margin-top:1rem}
+</style>
 </head>
 <body>
 <header>
@@ -108,19 +113,11 @@
 <section class="hero">
 <p class="pill">Entrée en vigueur : 01/01/2026</p>
 <h1>Maintenance GO2cam 2026 — choisissez votre formule</h1>
-<!-- Vitrine CTA neon -->
-<div class="cta-row">
-<a class="btn btn-pri" data-formule="essentiel" href="https://support.go2cam.net/go2f-maintenance?formule=Essentiel">Accéder à Essentiel</a>
-<a class="btn btn-ghost" data-formule="premium" href="https://support.go2cam.net/go2f-maintenance?formule=Premium">Accéder à Premium</a>
-<a class="btn btn-ghost" data-formule="rappel" href="https://support.go2cam.net/go2f-maintenance?formule=rappel">Être rappelé</a>
-</div>
-<div class="card plain" style="margin-top:12px">
-
 <div style="max-width:1024px; margin:16px auto; position:relative">
-<video autoplay="" controls="" id="video-nouveautes" muted="" playsinline="" style="width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#000;border-radius:12px;border:1px solid var(--stroke);box-shadow:0 0 12px #00f7ff22;"></video>
+<video autoplay="" controls="" id="video-nouveautes" muted="" playsinline="" style="width: 100%; height: auto; aspect-ratio: 16/9; object-fit: contain; background: #000; border-radius: 12px; border: 1px solid var(--stroke); box-shadow: 0 0 12px #00f7ff22; display: block; margin: 12px auto; max-width: 100%"></video>
 <div class="muted" id="video-msg" style="margin-top:8px"></div>
 </div>
-</div>
+
 <!-- Cartes formules (vitrine) -->
 <div class="grid-cards" role="list" style="margin-top:22px">
 <article class="card highlight" role="listitem">
@@ -132,8 +129,7 @@
 <li><strong>Installation du logiciel en local</strong></li>
 <li><strong>Hotline : 2 h/an</strong></li>
 <li>Formation nouveautés : <strong style="color:#00f7ff">500 € HT/pers.</strong> (au lieu de 800 €)</li>
-</ul>
-</article>
+</ul><div class="cta"><a class="btn btn-pri" data-formule="essentiel" href="https://support.go2cam.net/go2f-maintenance?formule=Essentiel">ACCÉDER À ESSENTIEL</a></div></article>
 <article class="card highlight" role="listitem">
 <span class="badge">Sur demande</span>
 <h3>Premium</h3>
@@ -144,8 +140,7 @@
 <li><strong>Hotline : 7 h/an</strong></li>
 <li><strong>Remise jusqu’à 10 %</strong> sur post-processeur / nouvelle licence</li>
 <li>Formation nouveautés : <strong style="color:#00f7ff">500 € HT/pers.</strong> (au lieu de 800 €)</li>
-</ul>
-</article>
+</ul><div class="cta"><a class="btn btn-ghost" data-formule="premium" href="https://support.go2cam.net/go2f-maintenance?formule=Premium">ACCÉDER À PREMIUM</a></div></article>
 <article class="card highlight" role="listitem">
 <span class="badge">Sur demande</span>
 <h3>Être rappelé</h3>
@@ -153,12 +148,10 @@
 <li>Accompagnement personnalisé</li>
 <li>Conseil selon votre contexte</li>
 <li>Démo ciblée au besoin</li>
-</ul>
-</article>
+</ul><div class="cta"><a class="btn btn-ghost" data-formule="etrerappelé" href="https://support.go2cam.net/go2f-maintenance?formule=rappel">ÊTRE RAPPELÉ</a></div></article>
 </div>
 </section>
 <!-- BOTTOM: 3 choix en pied de page -->
-
 <!-- ****** La section comparatif a été supprimée comme demandé ****** -->
 <!-- ======== DASHBOARD INTÉGRÉ ======== -->
 <section class="dash card" hidden="" id="stats">
